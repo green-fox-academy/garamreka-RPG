@@ -26,9 +26,11 @@ namespace RPG_game
             InitializeComponent();
             var foxDraw = new FoxDraw(canvas);
             var gameArea = new GameArea();
+            var hero = new Hero();
 
             gameArea.DrawFloor(foxDraw);
             gameArea.DrawWall(foxDraw);
+            hero.SetHero(foxDraw);
         }
 
         private void WindowKeyDown(object sender, KeyEventArgs e)
