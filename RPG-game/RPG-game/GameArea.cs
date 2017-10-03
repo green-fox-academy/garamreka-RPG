@@ -11,7 +11,13 @@ namespace RPG_game
     {
         private static string floorPath = @"./Assets/floor.png";
         private static string wallPath = @"./Assets/wall.png";
-        private static int boardSize = 50;
+        private static int tileSize = 50;
+
+        public string FloorPath
+        {
+            get { return floorPath; }
+            set { floorPath = @"./Assets/floor.png"; }
+        }
 
         private static List<string[]> board = new List<string[]>()
         {
@@ -27,6 +33,7 @@ namespace RPG_game
             new string[] {"floor", "floor", "floor", "wall", "floor", "wall", "wall", "floor", "floor", "floor"}
 
         };
+
         
         public void DrawFloor (FoxDraw foxDraw)
         {
@@ -44,9 +51,9 @@ namespace RPG_game
                     {
                         foxDraw.AddImage(floorPath, x, y);
                     }
-                    x += boardSize;
+                    x += tileSize;
                 }
-                y += boardSize;
+                y += tileSize;
                 x = 0;
             }
         }
