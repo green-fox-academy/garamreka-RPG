@@ -13,36 +13,43 @@ namespace RPG_game
         private static string wallPath = @"./Assets/wall.png";
         private static int boardSize = 50;
 
-        private static List<int[]> wallCoordinates = new List<int[]>()
+        private static List<string[]> board = new List<string[]>()
         {
-            new int[] {150, 0},
-            new int[] {150, 50},
-            new int[] {150, 100},
-            new int[] {100, 100},
-            new int[] {50, 100}
+            new string[] {"floor", "floor", "floor", "wall", "floor", "wall", "floor", "floor", "floor", "floor"},
+            new string[] {"floor", "floor", "floor", "wall", "floor", "wall", "floor", "wall", "wall", "floor"},
+            new string[] {"floor", "wall", "wall", "wall", "floor", "wall", "floor", "wall", "wall", "floor"},
+            new string[] {"floor", "floor", "floor", "floor", "floor", "wall", "floor", "floor", "floor", "floor"},
+            new string[] { "wall", "wall", "wall", "wall", "floor", "wall", "wall", "wall", "wall", "floor"},
+            new string[] {"floor", "wall", "floor", "wall", "floor", "floor", "floor", "floor", "wall", "floor"},
+            new string[] {"floor", "wall", "floor", "wall", "floor", "wall", "wall", "floor", "wall", "floor"},
+            new string[] {"floor", "floor", "floor", "floor", "floor", "wall", "wall", "floor", "wall", "floor"},
+            new string[] {"floor", "wall", "wall", "wall", "floor", "floor", "floor", "floor", "wall", "floor"},
+            new string[] {"floor", "floor", "floor", "wall", "floor", "wall", "wall", "floor", "floor", "floor"}
+
         };
         
         public void DrawFloor (FoxDraw foxDraw)
         {
             int x = 0;
             int y = 0;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < board.Count; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < board[i].Length; j++)
                 {
-                    foxDraw.AddImage(floorPath, x, y);
+                    if (board[i][j] == "wall")
+                    {
+                        foxDraw.AddImage(wallPath, x, y);
+                    }
+                    else
+                    {
+                        foxDraw.AddImage(floorPath, x, y);
+                    }
                     x += boardSize;
                 }
                 y += boardSize;
                 x = 0;
             }
         }
-        public void DrawWall (FoxDraw foxDraw)
-        {
-            for (int i = 0; i < wallCoordinates.Count; i++)
-            {
-                foxDraw.AddImage(wallPath, wallCoordinates[i][0], wallCoordinates[i][1]);
-            }
-        }
+
     }
 }

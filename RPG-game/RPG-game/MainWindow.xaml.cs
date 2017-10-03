@@ -26,23 +26,31 @@ namespace RPG_game
             InitializeComponent();
             var foxDraw = new FoxDraw(canvas);
             var gameArea = new GameArea();
-            var hero = new Hero();
-
+            
             gameArea.DrawFloor(foxDraw);
-            gameArea.DrawWall(foxDraw);
-            hero.SetHero(foxDraw);
+            Hero.SetHero(foxDraw);
         }
 
-        private void WindowKeyDown(object sender, KeyEventArgs e)
+        private void WindowKey(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left)
             {
-                Console.WriteLine("To the left!");
+                Hero.MoveLeft();
             }
 
             if (e.Key == Key.Right)
             {
-                Console.WriteLine("To the right!");
+                Hero.MoveRight();
+            }
+
+            if (e.Key == Key.Down)
+            {
+                Hero.MoveDown();
+            }
+
+            if (e.Key == Key.Up)
+            {
+                Hero.MoveUp();
             }
         }
     }
