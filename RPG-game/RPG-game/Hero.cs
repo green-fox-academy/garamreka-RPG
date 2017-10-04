@@ -27,7 +27,7 @@ namespace RPG_game
             foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
 
             gameArea.xCoordinate += gameArea.tileSize;
-            if (!gameArea.IsBoard() || gameArea.board[gameArea.yCoordinate / gameArea.tileSize][gameArea.xCoordinate/ gameArea.tileSize])
+            if (!gameArea.IsBoard() || gameArea.isWall())
             {
                 gameArea.xCoordinate -= gameArea.tileSize;
             }
@@ -40,7 +40,7 @@ namespace RPG_game
             foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
 
             gameArea.yCoordinate += gameArea.tileSize;
-            if (!gameArea.IsBoard() || gameArea.board[gameArea.yCoordinate / gameArea.tileSize][gameArea.xCoordinate / gameArea.tileSize])
+            if (!gameArea.IsBoard() || gameArea.isWall())
             {
                 gameArea.yCoordinate -= gameArea.tileSize;
             }
@@ -52,7 +52,7 @@ namespace RPG_game
             foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
 
             gameArea.xCoordinate -= gameArea.tileSize;
-            if (!gameArea.IsBoard() || gameArea.board[gameArea.yCoordinate / gameArea.tileSize][gameArea.xCoordinate / gameArea.tileSize])
+            if (!gameArea.IsBoard() || gameArea.isWall())
             {
                 gameArea.xCoordinate += gameArea.tileSize;
             }
@@ -64,7 +64,7 @@ namespace RPG_game
             foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
 
             gameArea.yCoordinate -= gameArea.tileSize;
-            if (!gameArea.IsBoard() || gameArea.board[gameArea.yCoordinate / gameArea.tileSize][gameArea.xCoordinate / gameArea.tileSize])
+            if (!gameArea.IsBoard() || gameArea.isWall())
             {
                 gameArea.yCoordinate += gameArea.tileSize;
             }

@@ -57,5 +57,9 @@ namespace RPG_game
         {
             return !(xCoordinate < 0 || xCoordinate > boardSize || yCoordinate < 0 || yCoordinate > boardSize);
         }
+        public bool isWall ()
+        {
+            return board[yCoordinate / tileSize][xCoordinate / tileSize];
+        }
     }
 }

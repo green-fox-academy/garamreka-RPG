@@ -29,6 +29,7 @@ namespace RPG_game
 
             gameArea.DrawBoard(foxDraw);
             Hero.SetHero(foxDraw);
+            Monster.SetMonster(foxDraw);
         }
 
         private void WindowKey(object sender, KeyEventArgs e)
