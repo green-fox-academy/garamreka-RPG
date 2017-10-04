@@ -26,7 +26,7 @@ namespace RPG_game
             InitializeComponent();
             var foxDraw = new FoxDraw(canvas);
             var gameArea = new GameArea();
-            
+
             gameArea.DrawFloor(foxDraw);
             Hero.SetHero(foxDraw);
         }

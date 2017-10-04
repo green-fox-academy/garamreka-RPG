@@ -13,8 +13,6 @@ namespace RPG_game
         private static string pathHeroLeft = @"./Assets/hero-left.png";
         private static string pathHeroRight = @"./Assets/hero-right.png";
         private static string pathHeroUp = @"./Assets/hero-up.png";
-        public static int xCoordinate = 0;
-        public static int yCoordinate = 0;
 
         public static FoxDraw foxDraw;
         public static GameArea gameArea = new GameArea();
@@ -22,31 +20,57 @@ namespace RPG_game
         public static void SetHero (FoxDraw foxDraw)
         {
             Hero.foxDraw = foxDraw;
-            foxDraw.AddImage(pathHeroDown, xCoordinate, yCoordinate);
+            foxDraw.AddImage(pathHeroDown, gameArea.xCoordinate, gameArea.yCoordinate);
         }
         public static void MoveRight ()
         {
-            foxDraw.AddImage(gameArea.FloorPath, xCoordinate, yCoordinate);
-            foxDraw.AddImage(pathHeroRight, xCoordinate + 50, yCoordinate);
-            xCoordinate += 50;
+            foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
+
+            gameArea.xCoordinate += 50;
+            if (!gameArea.IsTileWalkable())
+            {
+                gameArea.xCoordinate -= 50;
+            }
+
+            foxDraw.AddImage(pathHeroRight, gameArea.xCoordinate, gameArea.yCoordinate);
+
         }
         public static void MoveDown()
         {
-            foxDraw.AddImage(gameArea.FloorPath, xCoordinate, yCoordinate);
-            foxDraw.AddImage(pathHeroDown, xCoordinate, yCoordinate + 50);
-            yCoordinate += 50;
+            foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
+
+            gameArea.yCoordinate += 50;
+            if (!gameArea.IsTileWalkable())
+            {
+                gameArea.yCoordinate -= 50;
+            }
+
+            foxDraw.AddImage(pathHeroDown, gameArea.xCoordinate, gameArea.yCoordinate);
         }
         public static void MoveLeft()
         {
-            foxDraw.AddImage(gameArea.FloorPath, xCoordinate, yCoordinate);
-            foxDraw.AddImage(pathHeroLeft, xCoordinate - 50, yCoordinate);
-            xCoordinate -= 50;
+            foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
+
+            gameArea.xCoordinate -= 50;
+            if (!gameArea.IsTileWalkable())
+            {
+                gameArea.xCoordinate += 50;
+            }
+
+            foxDraw.AddImage(pathHeroLeft, gameArea.xCoordinate, gameArea.yCoordinate);
         }
         public static void MoveUp()
         {
-            foxDraw.AddImage(gameArea.FloorPath, xCoordinate, yCoordinate);
-            foxDraw.AddImage(pathHeroUp, xCoordinate, yCoordinate - 50);
-            yCoordinate -= 50;
+            foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
+
+            gameArea.yCoordinate -= 50;
+            if (!gameArea.IsTileWalkable())
+            {
+                gameArea.yCoordinate += 50;
+            }
+
+            foxDraw.AddImage(pathHeroUp, gameArea.xCoordinate, gameArea.yCoordinate);
+
         }
     }
 }

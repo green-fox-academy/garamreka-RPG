@@ -7,19 +7,17 @@ using GreenFox;
 
 namespace RPG_game
 {
-    class GameArea
+    public class GameArea
     {
-        private static string floorPath = @"./Assets/floor.png";
-        private static string wallPath = @"./Assets/wall.png";
-        private static int tileSize = 50;
+        public string floorPath = @"./Assets/floor.png";
+        public string wallPath = @"./Assets/wall.png";
+        public int tileSize = 50;
+        public int boardSize = 450;
+        //public bool isWall = false;
+        public int xCoordinate = 0;
+        public int yCoordinate = 0;
 
-        public string FloorPath
-        {
-            get { return floorPath; }
-            set { floorPath = @"./Assets/floor.png"; }
-        }
-
-        private static List<string[]> board = new List<string[]>()
+        public List<string[]> board = new List<string[]>()
         {
             new string[] {"floor", "floor", "floor", "wall", "floor", "wall", "floor", "floor", "floor", "floor"},
             new string[] {"floor", "floor", "floor", "wall", "floor", "wall", "floor", "wall", "wall", "floor"},
@@ -57,6 +55,9 @@ namespace RPG_game
                 x = 0;
             }
         }
-
+        public bool IsTileWalkable ()
+        {
+            return !(xCoordinate < 0 || xCoordinate > boardSize || yCoordinate < 0 || yCoordinate > boardSize);
+        }
     }
 }
