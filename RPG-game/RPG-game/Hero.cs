@@ -26,10 +26,10 @@ namespace RPG_game
         {
             foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
 
-            gameArea.xCoordinate += 50;
-            if (!gameArea.IsTileWalkable())
+            gameArea.xCoordinate += gameArea.tileSize;
+            if (!gameArea.IsBoard() || gameArea.board[gameArea.yCoordinate / gameArea.tileSize][gameArea.xCoordinate/ gameArea.tileSize])
             {
-                gameArea.xCoordinate -= 50;
+                gameArea.xCoordinate -= gameArea.tileSize;
             }
 
             foxDraw.AddImage(pathHeroRight, gameArea.xCoordinate, gameArea.yCoordinate);
@@ -39,10 +39,10 @@ namespace RPG_game
         {
             foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
 
-            gameArea.yCoordinate += 50;
-            if (!gameArea.IsTileWalkable())
+            gameArea.yCoordinate += gameArea.tileSize;
+            if (!gameArea.IsBoard() || gameArea.board[gameArea.yCoordinate / gameArea.tileSize][gameArea.xCoordinate / gameArea.tileSize])
             {
-                gameArea.yCoordinate -= 50;
+                gameArea.yCoordinate -= gameArea.tileSize;
             }
 
             foxDraw.AddImage(pathHeroDown, gameArea.xCoordinate, gameArea.yCoordinate);
@@ -51,10 +51,10 @@ namespace RPG_game
         {
             foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
 
-            gameArea.xCoordinate -= 50;
-            if (!gameArea.IsTileWalkable())
+            gameArea.xCoordinate -= gameArea.tileSize;
+            if (!gameArea.IsBoard() || gameArea.board[gameArea.yCoordinate / gameArea.tileSize][gameArea.xCoordinate / gameArea.tileSize])
             {
-                gameArea.xCoordinate += 50;
+                gameArea.xCoordinate += gameArea.tileSize;
             }
 
             foxDraw.AddImage(pathHeroLeft, gameArea.xCoordinate, gameArea.yCoordinate);
@@ -63,10 +63,10 @@ namespace RPG_game
         {
             foxDraw.AddImage(gameArea.floorPath, gameArea.xCoordinate, gameArea.yCoordinate);
 
-            gameArea.yCoordinate -= 50;
-            if (!gameArea.IsTileWalkable())
+            gameArea.yCoordinate -= gameArea.tileSize;
+            if (!gameArea.IsBoard() || gameArea.board[gameArea.yCoordinate / gameArea.tileSize][gameArea.xCoordinate / gameArea.tileSize])
             {
-                gameArea.yCoordinate += 50;
+                gameArea.yCoordinate += gameArea.tileSize;
             }
 
             foxDraw.AddImage(pathHeroUp, gameArea.xCoordinate, gameArea.yCoordinate);

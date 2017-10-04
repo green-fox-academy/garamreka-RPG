@@ -13,27 +13,25 @@ namespace RPG_game
         public string wallPath = @"./Assets/wall.png";
         public int tileSize = 50;
         public int boardSize = 450;
-        //public bool isWall = false;
         public int xCoordinate = 0;
         public int yCoordinate = 0;
 
-        public List<string[]> board = new List<string[]>()
+        public List<bool[]> board = new List<bool[]>()
         {
-            new string[] {"floor", "floor", "floor", "wall", "floor", "wall", "floor", "floor", "floor", "floor"},
-            new string[] {"floor", "floor", "floor", "wall", "floor", "wall", "floor", "wall", "wall", "floor"},
-            new string[] {"floor", "wall", "wall", "wall", "floor", "wall", "floor", "wall", "wall", "floor"},
-            new string[] {"floor", "floor", "floor", "floor", "floor", "wall", "floor", "floor", "floor", "floor"},
-            new string[] { "wall", "wall", "wall", "wall", "floor", "wall", "wall", "wall", "wall", "floor"},
-            new string[] {"floor", "wall", "floor", "wall", "floor", "floor", "floor", "floor", "wall", "floor"},
-            new string[] {"floor", "wall", "floor", "wall", "floor", "wall", "wall", "floor", "wall", "floor"},
-            new string[] {"floor", "floor", "floor", "floor", "floor", "wall", "wall", "floor", "wall", "floor"},
-            new string[] {"floor", "wall", "wall", "wall", "floor", "floor", "floor", "floor", "wall", "floor"},
-            new string[] {"floor", "floor", "floor", "wall", "floor", "wall", "wall", "floor", "floor", "floor"}
+            new bool[] {false, false, false, true, false, true, false, false, false, false},
+            new bool[] { false, false, false, true, false, true, false, true, true, false},
+            new bool[] { false, true, true, true, false, true, false, true, true, false},
+            new bool[] { false, false, false, false, false, true, false, false, false, false},
+            new bool[] { true, true, true, true, false, true, true, true, true, false},
+            new bool[] { false, true, false, true, false, false, false, false, true, false},
+            new bool[] { false, true, false, true, false, true, true, false, true, false},
+            new bool[] { false, false, false, false, false, true, true, false, true, false},
+            new bool[] { false, true, true, true, false, false, false, false, true, false},
+            new bool[] { false, false, false, true, false, true, true, false, false, false }
 
         };
 
-        
-        public void DrawFloor (FoxDraw foxDraw)
+        public void DrawBoard (FoxDraw foxDraw)
         {
             int x = 0;
             int y = 0;
@@ -41,7 +39,7 @@ namespace RPG_game
             {
                 for (int j = 0; j < board[i].Length; j++)
                 {
-                    if (board[i][j] == "wall")
+                    if (board[i][j] == true)
                     {
                         foxDraw.AddImage(wallPath, x, y);
                     }
@@ -55,7 +53,7 @@ namespace RPG_game
                 x = 0;
             }
         }
-        public bool IsTileWalkable ()
+        public bool IsBoard ()
         {
             return !(xCoordinate < 0 || xCoordinate > boardSize || yCoordinate < 0 || yCoordinate > boardSize);
         }
