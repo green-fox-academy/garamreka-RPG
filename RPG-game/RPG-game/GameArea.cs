@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GreenFox;
+using System.IO;
 
 namespace RPG_game
 {
@@ -16,30 +14,28 @@ namespace RPG_game
         public int xCoordinate = 0;
         public int yCoordinate = 0;
 
-        public List<bool[]> map = new List<bool[]>()
+        public List<string[]> GetMap()
         {
-            new bool[] {false, false, false, true, false, true, false, false, false, false},
-            new bool[] { false, false, false, true, false, true, false, true, true, false},
-            new bool[] { false, true, true, true, false, true, false, true, true, false},
-            new bool[] { false, false, false, false, false, true, false, false, false, false},
-            new bool[] { true, true, true, true, false, true, true, true, true, false},
-            new bool[] { false, true, false, true, false, false, false, false, true, false},
-            new bool[] { false, true, false, true, false, true, true, false, true, false},
-            new bool[] { false, false, false, false, false, true, true, false, true, false},
-            new bool[] { false, true, true, true, false, false, false, false, true, false},
-            new bool[] { false, false, false, true, false, true, true, false, false, false }
+            string pathMap = @"../../Assets/map.txt";
+            List<string[]> map = new List<string[]>();
+            string[] monsterMatrixInput = File.ReadAllLines(pathMap);
 
-        };
+            foreach (var line in monsterMatrixInput)
+            {
+                map.Add(line.Split(' '));
+            }
+            return map;
+        }
 
         public void DrawMap (FoxDraw foxDraw)
         {
             int x = 0;
             int y = 0;
-            for (int i = 0; i < map.Count; i++)
+            for (int i = 0; i < GetMap().Count; i++)
             {
-                for (int j = 0; j < map[i].Length; j++)
+                for (int j = 0; j < GetMap()[i].Length; j++)
                 {
-                    if (map[i][j] == true)
+                    if (GetMap()[i][j] == "true")
                     {
                         foxDraw.AddImage(wallPath, x, y);
                     }
@@ -59,7 +55,14 @@ namespace RPG_game
         }
         public bool isWall ()
         {
-            return map[yCoordinate / tileSize][xCoordinate / tileSize];
+            if (GetMap()[yCoordinate / tileSize][xCoordinate / tileSize] == "true")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
