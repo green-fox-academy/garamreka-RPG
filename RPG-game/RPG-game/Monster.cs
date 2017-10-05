@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GreenFox;
+using System.IO;
 
 namespace RPG_game
 {
@@ -15,6 +16,19 @@ namespace RPG_game
         private static int numberOfSkeleton = 3;
         private static int numberOfBoss = 1;
 
+        public static List<string[]> MonsterMatrix ()
+        {
+            string pathMonsterMatrix = @"../../Assets/matrixForMonsters.txt";
+            List<string[]> monsterMatrix = new List<string[]>();
+            string[] monsterMatrixInput = File.ReadAllLines(pathMonsterMatrix);
+
+            foreach (var line in monsterMatrixInput)
+            {
+                monsterMatrix.Add(line.Split(' '));
+            }
+            return monsterMatrix;
+        }
+        
         public static GameArea gameArea = new GameArea();
 
         public static void SetMonster(FoxDraw foxDraw)
@@ -30,12 +44,13 @@ namespace RPG_game
 
             do
             {
-                int randomX = random.Next(1, 10);
-                int randomY = random.Next(1, 10);
-                if (gameArea.board[randomX][randomY] == false)
+                int randomX = random.Next(0, 10);
+                int randomY = random.Next(0, 10);
+                if (MonsterMatrix()[randomY][randomX] == "false")
                 {
                     foxDraw.AddImage(path, randomX * gameArea.tileSize, randomY * gameArea.tileSize);
                     numberOfMonster++;
+                    MonsterMatrix()[randomY][randomX] = "true";
                 }
             }
             while (numberOfMonster < maxMonster);

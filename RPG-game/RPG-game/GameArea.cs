@@ -16,7 +16,7 @@ namespace RPG_game
         public int xCoordinate = 0;
         public int yCoordinate = 0;
 
-        public List<bool[]> board = new List<bool[]>()
+        public List<bool[]> map = new List<bool[]>()
         {
             new bool[] {false, false, false, true, false, true, false, false, false, false},
             new bool[] { false, false, false, true, false, true, false, true, true, false},
@@ -31,15 +31,15 @@ namespace RPG_game
 
         };
 
-        public void DrawBoard (FoxDraw foxDraw)
+        public void DrawMap (FoxDraw foxDraw)
         {
             int x = 0;
             int y = 0;
-            for (int i = 0; i < board.Count; i++)
+            for (int i = 0; i < map.Count; i++)
             {
-                for (int j = 0; j < board[i].Length; j++)
+                for (int j = 0; j < map[i].Length; j++)
                 {
-                    if (board[i][j] == true)
+                    if (map[i][j] == true)
                     {
                         foxDraw.AddImage(wallPath, x, y);
                     }
@@ -53,13 +53,13 @@ namespace RPG_game
                 x = 0;
             }
         }
-        public bool IsBoard ()
+        public bool IsMap ()
         {
             return !(xCoordinate < 0 || xCoordinate > boardSize || yCoordinate < 0 || yCoordinate > boardSize);
         }
         public bool isWall ()
         {
-            return board[yCoordinate / tileSize][xCoordinate / tileSize];
+            return map[yCoordinate / tileSize][xCoordinate / tileSize];
         }
     }
 }
